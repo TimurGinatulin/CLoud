@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChatController">
+    <ListView fx:id="listView" layoutX="15.0" layoutY="15.0" prefHeight="430.0" prefWidth="440.0" />
+    <TextField fx:id="input" layoutX="15.0" layoutY="445.0" onAction="#sendMessage" prefHeight="40.0" prefWidth="440.0" />
+    <TextField fx:id="inputUsername" layoutX="150.0" layoutY="144.0" promptText="username" />
+    <PasswordField fx:id="inputPassword" layoutX="150.0" layoutY="192.0" onAction="#entryPassword" promptText="password" />
+    <Text fx:id="serverMsg" layoutX="150.0" layoutY="108.0" wrappingWidth="171.0" />
+</AnchorPane>
