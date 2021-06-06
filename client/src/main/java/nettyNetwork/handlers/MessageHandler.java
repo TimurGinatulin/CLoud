@@ -5,7 +5,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import net.Message;
 
 public class MessageHandler extends SimpleChannelInboundHandler<Message> {
-    private final Callback callback;
+    private Callback callback;
 
     public MessageHandler(Callback callback) {
         this.callback = callback;

@@ -1,5 +1,6 @@
 package net.handlers;
 
+import connectors.databaseConnector.DBConnector;
 import utils.Decoder.MessageDecoder;
 import connectors.databaseConnector.Authorization;
 import io.netty.channel.ChannelHandlerContext;
@@ -15,8 +16,23 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     protected void channelRead0(ChannelHandlerContext ctx, Message msg) {
         if (UserContainer.containsId(msg.getIdUser())) {
             ctx.writeAndFlush(MessageDecoder.decode(msg));
+        } else if (msg.getContent().contains("Sign")) {
+            signNewUser(ctx, msg);
         } else
             auth(ctx, msg);
+    }
+
+    private void signNewUser(ChannelHandlerContext ctx, Message msg) {
+        String[] msgArr = msg.getContent().split(" ");
+        Message message;
+        if (Authorization.signUser(msgArr[1], msgArr[2])) {
+            message = DBConnector.getUserByUsernameAndPassword(msgArr[1], msgArr[2]);
+            assert message != null;
+            message.setContent("200");
+            ctx.writeAndFlush(message);
+        } else {
+            sendByServer(ctx, "100");
+        }
     }
 
     @Override

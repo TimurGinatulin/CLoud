@@ -8,7 +8,7 @@ public class CloudWatcher {
     private static CloudWatcher instance;
 
     private CloudWatcher() throws IOException {
-        Path path = Paths.get(System.getProperty("user.home"));
+        Path path = Paths.get(System.getProperty("User.home"));
         WatchService watchService = FileSystems.getDefault().newWatchService();
         new Thread(() -> {
             try {

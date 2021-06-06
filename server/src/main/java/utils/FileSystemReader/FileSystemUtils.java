@@ -12,10 +12,12 @@ public class FileSystemUtils {
 
     public String readAsString(Path path, String filename) {
         StringBuilder newPath = new StringBuilder(path.toString());
+        StringBuilder sb = new StringBuilder("cat ");
         newPath.append("/").append(filename);
         if (new File(newPath.toString()).isFile()) {
             try {
-                return Files.readString(Path.of(newPath.toString()));
+                sb.append(Files.readString(Path.of(newPath.toString())));
+                return sb.toString();
             } catch (IOException e) {
                 System.err.println("Read paths down");
                 return null;
@@ -42,7 +44,7 @@ public class FileSystemUtils {
         try {
             Files.write(Path.of(path.toString() + "/" + file),
                     data.getBytes(StandardCharsets.UTF_8),
-                    StandardOpenOption.APPEND);
+                    StandardOpenOption.WRITE);
         } catch (IOException e) {
             System.err.println("Writing lost");
         }
@@ -50,12 +52,12 @@ public class FileSystemUtils {
 
     public String getAllFilesAtDirToString(File curDir) {
         File[] filesList = curDir.listFiles();
-        StringBuilder filesLists = new StringBuilder();
+        StringBuilder filesLists = new StringBuilder("ls .. ");
         for (File f : filesList != null ? filesList : new File[0]) {
             if (f.isDirectory())
-                filesLists.append(f.getName()).append("   \n");
+                filesLists.append(f.getName()).append(" ");
             if (f.isFile()) {
-                filesLists.append(f.getName()).append("   \n");
+                filesLists.append(f.getName()).append(" ");
             }
         }
         return filesLists.toString();

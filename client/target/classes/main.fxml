@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+    <ListView fx:id="myFiles" layoutX="14.0" layoutY="14.0" prefHeight="375.0" prefWidth="270.0" />
+    <ListView fx:id="cloudFiles" layoutX="316.0" layoutY="14.0" onMouseClicked="#cloudMouseAction" prefHeight="375.0" prefWidth="270.0" />
+    <Button fx:id="sendTo" layoutX="284.0" layoutY="70.0" mnemonicParsing="false" onAction="#sendTo" prefHeight="26.0" prefWidth="4.0" />
+    <Button fx:id="update" layoutX="284.0" layoutY="28.0" mnemonicParsing="false" onAction="#update" />
+    <TextField fx:id="usernameInput" layoutX="215.0" layoutY="83.0" promptText="username" visible="false" />
+    <PasswordField fx:id="passwordInput" layoutX="214.0" layoutY="125.0" promptText="password" visible="false" />
+    <Button fx:id="login" layoutX="215.0" layoutY="174.0" mnemonicParsing="false" onAction="#login" text="login" />
+    <Button fx:id="sign" layoutX="339.0" layoutY="174.0" mnemonicParsing="false" onAction="#sign" text="Sign" />
+    <Button fx:id="receiveTo" layoutX="284.0" layoutY="112.0" mnemonicParsing="false" onAction="#receiveTo" />
+    <Button fx:id="remove" layoutX="284.0" layoutY="151.0" mnemonicParsing="false" onAction="#remove" />
+    <Button fx:id="exit" layoutX="284.0" layoutY="187.0" mnemonicParsing="false" onAction="#exit" />
+    <Button fx:id="mkDir" layoutX="285.0" layoutY="227.0" mnemonicParsing="false" onAction="#mkDir" />
+    <TextField fx:id="newDirName" layoutX="316.0" layoutY="200.0" onAction="#createDir" />
+   <TextArea fx:id="info" layoutX="28.0" layoutY="25.0" prefHeight="352.0" prefWidth="547.0" visible="false" />
+   <Button fx:id="closeInfo" layoutX="538.0" layoutY="1.0" mnemonicParsing="false" onAction="#closeInfo" text="Close" />
+   <Button fx:id="editInfoButton" layoutX="494.0" layoutY="1.0" mnemonicParsing="false" onAction="#editInfo" text="Edit" />
+   <Button fx:id="createFile" layoutX="285.0" layoutY="266.0" mnemonicParsing="false" onAction="#createFile" />
+   <TextField fx:id="createFileField"  onAction="#createFileKey" layoutX="316.0" layoutY="233.0" />
+</AnchorPane>

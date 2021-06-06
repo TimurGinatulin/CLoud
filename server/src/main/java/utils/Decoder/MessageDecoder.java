@@ -42,8 +42,10 @@ public class MessageDecoder {
                         newPath = Path.of("server/cloudFilePool/" + message.getReceiver());
                     else
                         newPath = fileSystemUtils.cd(contentArr[1], message.getCurrentPath());
-                    message.setCurrentPath(newPath.toString());
-                    message.setContent(fileSystemUtils.getAllFilesAtDirToString(newPath.toFile()));
+                    if (new File(newPath.toString()).isDirectory()) {
+                        message.setCurrentPath(newPath.toString());
+                        message.setContent(fileSystemUtils.getAllFilesAtDirToString(newPath.toFile()));
+                    } else break;
                 }
                 break;
             }
@@ -94,7 +96,7 @@ public class MessageDecoder {
             case "rm": {
                 if (contentArr.length > 1)
                     if (fileSystemUtils.rm(message.getCurrentPath(), contentArr[1]))
-                        message.setContent("Ok");
+                        message.setContent("OK");
                     else
                         message.setContent("Cancel");
                 break;
@@ -118,7 +120,7 @@ public class MessageDecoder {
                         FileOutputStream fos = new
                                 FileOutputStream(message.getCurrentPath() + "/" + fileIn);
                         fos.write(message.getData());
-                        message.setContent("Ok");
+                        message.setContent("OK");
                         break;
                     } catch (IOException e) {
                         e.printStackTrace();
