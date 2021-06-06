@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FileSystemUtils {
 
@@ -48,6 +50,19 @@ public class FileSystemUtils {
         }
     }
 
+    public List<String> getAllFilesAtDirToList(File curDir) {
+        File[] filesList = curDir.listFiles();
+        LinkedList<String> filesLists = new LinkedList<>();
+        for (File f : filesList != null ? filesList : new File[0]) {
+            if (f.isDirectory())
+                filesLists.add(f.getName());
+            if (f.isFile()) {
+                filesLists.add(f.getName());
+            }
+        }
+        return filesLists;
+    }
+
     public String getAllFilesAtDirToString(File curDir) {
         File[] filesList = curDir.listFiles();
         StringBuilder filesLists = new StringBuilder();
@@ -65,7 +80,7 @@ public class FileSystemUtils {
         if (path.startsWith("/") || path.startsWith("C:\\"))
             return Paths.get(path);
         if (path.trim().equals("~"))
-            return Paths.get(System.getProperty("user.home"));
+            return Paths.get(System.getProperty("User.home"));
         else {
             return Paths.get(currPath + "/" + path);
         }
